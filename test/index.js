@@ -1,5 +1,3 @@
-import EventHelper from '../lib/eventhelper';
-
 let emmiter = new EventHelper();
 emmiter.on('hello', (name)=> console.log(`hello ${name}`));
 
