@@ -1,0 +1,29 @@
+{
+  "name": "eventhelper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yvanwangl/EventHelper.git"
+  },
+  "keywords": [],
+  "author": "Yvanwang <https://blog.yvanwang.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yvanwangl/EventHelper/issues"
+  },
+  "homepage": "https://github.com/yvanwangl/EventHelper#readme",
+  "dependencies": {
+    
+  },
+  "devDependencies": {
+    
+  }
+}
