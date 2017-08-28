@@ -21,9 +21,7 @@
   },
   "homepage": "https://github.com/yvanwangl/EventHelper#readme",
   "dependencies": {
-    
+    "debug": "^3.0.1"
   },
-  "devDependencies": {
-    
-  }
+  "devDependencies": {}
 }
