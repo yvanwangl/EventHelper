@@ -1,7 +1,7 @@
 let emmiter = new EventHelper();
 emmiter.on('hello', (name)=> console.log(`hello ${name}`));
 
-emmiter.emit('hello', 'wangyafei')
+emmiter.emit('hello', 'wangyafei');
 
 setTimeout(()=>{
     emmiter.emit('read','read book 10')
@@ -17,4 +17,8 @@ emmiter.all('read', 'write', (readResult, writeResult)=> console.log(`read: ${re
 
 emmiter.race('read', 'write', (result)=> console.log(`the winner is: ${result}`));
 
-emmiter.tail('read', 'write', (readResult, writeResult)=> console.log(`result is: ${readResult} -- ${writeResult}`))
+emmiter.tail('read', 'write', (readResult, writeResult)=> console.log(`result is: ${readResult} -- ${writeResult}`));
+
+emmiter.once('read', (result)=> console.log(`once callback result is: ${result}`));
+
+emmiter.headbind('read', (result)=> console.log(`this method is the first callback of read: ${result}`));
