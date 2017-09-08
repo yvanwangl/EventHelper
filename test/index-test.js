@@ -1,7 +1,8 @@
+let EventHelper = require('../lib/eventhelper.js');
 let emmiter = new EventHelper();
-emmiter.on('hello', (name)=> console.log(`hello ${name}`));
+// emmiter.on('hello', (name)=> console.log(`hello ${name}`));
 
-emmiter.emit('hello', 'wangyafei');
+// emmiter.emit('hello', 'wangyafei');
 
 setTimeout(()=>{
     emmiter.emit('read','read book 10')
