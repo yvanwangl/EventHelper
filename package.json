@@ -25,10 +25,11 @@
     "debug": "^3.0.1"
   },
   "devDependencies": {
+    "autod": "*",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.0",
-    "mocha": "^3.5.0",
-    "autod": "*",
-    "istanbul": "*"
+    "codecov": "^2.3.0",
+    "istanbul": "*",
+    "mocha": "^3.5.0"
   }
 }
