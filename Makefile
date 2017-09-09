@@ -19,7 +19,7 @@ test: install-test
 				$(TESTS)
 
 test-cov: install-test
-		@$(ISTANBUL) cover --report lcovonly $(MOCHA) -- -R $(REPORTER) $(TESTS) && codecov
+		@$(ISTANBUL) cover --report lcovonly $(MOCHA) -- -R $(REPORTER) $(TESTS)
 
 test-all: test-cov
 
