@@ -1,4 +1,4 @@
-let EventHelper = require('../lib/eventhelper.js');
+let EventHelper = require('../index');
 let emmiter = new EventHelper();
 // emmiter.on('hello', (name)=> console.log(`hello ${name}`));
 

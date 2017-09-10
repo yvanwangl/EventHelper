@@ -1,5 +1,5 @@
 let assert = require('assert');
-let EventHelper = require('../lib/eventhelper.js');
+let EventHelper = require('../index');
 
 describe('#method: on & emit', ()=>{
     let emmiter = new EventHelper();
