@@ -1,21 +1,16 @@
 let assert = require('assert');
-let fs = require('fs');
+let fs = require('mz/fs');
 let EventHelper = require('../index');
 
-describe('#method: all', async (done)=>{
+describe('#method: all', ()=>{
     let emmiter = new EventHelper();
-    let result ;
-    emmiter.all('read', 'write', (read, write)=>{
-        result = `${read} and ${write}`;
-    });
-    await fs.readFile('../mock/read.txt', 'utf8', (err, data)=> {
-        emmiter.emit('read', 'read10');
-        console.log(data);
-    });
-    await fs.readFile('../mock/write.txt', 'utf8', (err, data)=> emmiter.emit('write', 'write20'));
-    it('#all() should have result "read10 and write20"', (done)=>{
-        assert.equal(result, 'read10 and write20');
-        done();
+    fs.readFile('../mock/read.txt', 'utf-8', emmiter.done('read'));
+    fs.readFile('../mock/write.txt', 'utf-8', emmiter.done('write'));
+    
+    it('#all() should have result "read10 and write20"', function(){
+        emmiter.all('read', 'write', (read, write)=>{
+            assert.equal(`${read} and ${write}`, 'read10 and write20');
+        });
     });
     
 });
