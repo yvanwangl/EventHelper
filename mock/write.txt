@@ -1,1 +1,1 @@
-write0
+write20
