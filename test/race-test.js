@@ -12,7 +12,7 @@ describe('#method: race', ()=>{
             done();
         });
         fs.readFile('./mock/read.txt', 'utf-8', (err, data)=> emmiter.emit('read', data));
-        fs.readFile('./mock/readMore.txt', 'utf-8', (err, data)=> emmiter.emit('readMore', data));
+        fs.readFile('./mock/readMore.txt', 'utf-8', (err, data)=> emmiter.emitLater('readMore', data));
     });
 
     it('#race() should trriger the handler with value {eventType: "time300", data: 300}', (done)=>{
