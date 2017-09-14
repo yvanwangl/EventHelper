@@ -22,6 +22,6 @@ describe('#method: race', ()=>{
             done();
         });
         setTimeout(()=> emmiter.emit('time300', 300), 300);
-        setTimeout(()=> emmiter.emit('time500', 500), 500);
+        setTimeout(()=> emmiter.emitLater('time500', 500), 500);
     });
 });
