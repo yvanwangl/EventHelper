@@ -21,6 +21,21 @@ describe('#method: un', ()=>{
         emmiter.un('test');
         assert.equal(emmiter._eventEmitter['test'].length, 0);
     });
+
+    it('#un() should remove all handlers of all eventType', ()=>{
+        let handler1 = ()=> console.log('test handler1');
+        let handler2 = ()=> console.log('test handler2');
+        emmiter.on('read', handler1);
+        emmiter.on('read', handler2);
+        emmiter.on('write', handler1);
+        emmiter.on('write', handler2);
+        assert.equal(emmiter._eventEmitter['read'].length, 2);
+        assert.equal(emmiter._eventEmitter['write'].length, 2);
+        emmiter.un();
+        assert.equal(emmiter._eventEmitter['read'], undefined);
+        assert.equal(emmiter._eventEmitter['write'], undefined);
+
+    });
 });
 
 describe('#method: unAllListeners', ()=>{
