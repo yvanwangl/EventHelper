@@ -2,16 +2,17 @@ let assert = require('assert');
 let EventHelper = require('../index');
 
 describe('#method: bindForAll', () => {
-    let emmiter = new EventHelper();
 
     it('#bindForAll(handler) will bind handler for event "__all__"', () => {
+        let emmiter = new EventHelper();
         let handler = () => console.log('bindForAll');
         emmiter.bindForAll(handler);
         assert.equal(emmiter._eventEmitter['__all__'].length, 1);
         assert.equal(emmiter._eventEmitter['__all__'][0], handler);
     });
 
-    it('#unBindForAll(handler) will bind handler for event "__all__"', () => {
+    it('#unbindForAll(handler) will unbind handler for event "__all__"', () => {
+        let emmiter = new EventHelper();
         let handler1 = () => console.log('bindForAll');
         let handler2 = () => console.log('bindForAll');
         emmiter.bindForAll(handler1);
@@ -19,12 +20,12 @@ describe('#method: bindForAll', () => {
         assert.equal(emmiter._eventEmitter['__all__'].length, 2);
         assert.equal(emmiter._eventEmitter['__all__'][0], handler1);
         assert.equal(emmiter._eventEmitter['__all__'][1], handler2);
-        emmiter.unBindForAll(handler1);
+        emmiter.unbindForAll(handler1);
         assert.equal(emmiter._eventEmitter['__all__'].length, 1);
         assert.equal(emmiter._eventEmitter['__all__'][0], handler2);
         emmiter.bindForAll(handler1);
         assert.equal(emmiter._eventEmitter['__all__'].length, 2);
-        emmiter.unBindForAll();
+        emmiter.unbindForAll();
         assert.equal(emmiter._eventEmitter['__all__'].length, 0);
     });
 });
