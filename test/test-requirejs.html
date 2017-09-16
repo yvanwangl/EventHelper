@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>EventProxy Test Suite</title>
+  <link rel="stylesheet" href="mocha.css" />
+</head>
+<body>
+  <div id="mocha"></div>
+  <script src="require.js"></script>
+  <script>
+  require.config({
+    paths: {
+      "eventhelper": "/lib/eventhelper"
+    }
+  });
+  // Start the main app logic.
+  require(['chai', 'eventhelper', 'mocha'], function (chai) {
+    mocha.setup('bdd');
+    var assert = chai.assert;
+    var EventHelper = require('eventhelper');
+    describe('EventHelper', function () {
+      it('EventHelper should have create', function () {
+        assert.isFunction(EventHelper, "EventHelper is a function");
+        assert.isFunction(EventHelper.EventHelper, "EventHelper.EventHelper is a function");
+      });
+      it('new EventHelper()', function () {
+        var emmiter = new EventHelper();
+        emmiter.on('test', function () {});
+      });
+    });
+    mocha.run();
+  });
+  </script>
+</body>
+</html>

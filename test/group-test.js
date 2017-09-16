@@ -18,7 +18,6 @@ describe('#method: group', ()=>{
     });
 
     // it('#group(eventType) has an error emmit', (done)=>{
-    //     this.timeout(5000);
     //     let _readFileError = (file, encoding, callback)=> process.nextTick(()=> {callback(new Error('readError'))});
     //     emmiter.after('contentError', files.length, (result)=>{
     //         console.log(result);
