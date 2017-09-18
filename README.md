@@ -12,6 +12,26 @@ EventHelper具有以下几个特征：<br>
 4、统一处理异步事件错误的机制<br>
 5、Web前端与Node后端均可使用<br>
 
+##如何安装
+1、如果你使用npm
+```
+npm install eventhelper
+```
+2、如果你直接引入
+```
+<script type='text/script' src="https://github.com/yvanwangl/EventHelper/blob/master/lib/eventhelper.js"></script>
+```
+
+##如何创建一个EventHelper对象：
+new 关键字调用:
+```
+let emmiter = new EventHelper();
+```
+或者可以调用静态方法：
+```
+let emmiter = EventHelper.create();
+```
+
 ##API<br>
 ```
 1、on/addListener/subscribe/bind:
@@ -23,6 +43,18 @@ emmiter.on('read', (content)=> console.log(content));
 搭配emit方法使用才有效果:)
 let fs = require('fs');
 fs.readFile('demo.txt', 'utf-8', (err, data)=> emmiter.emit('read', data));
+
+2、emit/trigger/fire:
+用途：触发一个自定义事件
+参数：emit(eventType:String, data:Any)
+使用方式，搭配on使用效果才好:)
+let emmiter = new EventHelper();
+emmiter.on('read', (content)=> console.log(content));
+let fs = require('fs');
+fs.readFile('demo.txt', 'utf-8', (err, data)=> emmiter.emit('read', data));
+
+3、
+
 
 
 
