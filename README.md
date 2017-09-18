@@ -14,9 +14,15 @@ EventHelper具有以下几个特征：<br>
 
 ##API<br>
 ```
-on/addListener/subscribe/bind:<br>
-用途：绑定一个自定义事件监听函数<br>
-参数：on(eventType:String, handler:Function)<br>
-使用方式：<br>
-let emmiter = new EventHelper();<br>
-emmiter.on('read', (content)=> console.log(content));<br>
+1、on/addListener/subscribe/bind:
+用途：绑定一个自定义事件监听函数
+参数：on(eventType:String, handler:Function)
+使用方式：
+let emmiter = new EventHelper();
+emmiter.on('read', (content)=> console.log(content));
+搭配emit方法使用才有效果:)
+let fs = require('fs');
+fs.readFile('demo.txt', 'utf-8', (err, data)=> emmiter.emit('read', data));
+
+
+
