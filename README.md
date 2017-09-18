@@ -12,7 +12,7 @@ EventHelper具有以下几个特征：<br>
 4、统一处理异步事件错误的机制<br>
 5、Web前端与Node后端均可使用<br>
 
-## 如何安装
+### 如何安装
 1、如果你使用npm
 ```
 npm install eventhelper
@@ -22,7 +22,7 @@ npm install eventhelper
 <script type='text/script' src="https://github.com/yvanwangl/EventHelper/blob/master/lib/eventhelper.js"></script>
 ```
 
-## 如何创建一个EventHelper对象：
+### 如何创建一个EventHelper对象：
 new 关键字调用:
 ```
 let emmiter = new EventHelper();
@@ -32,7 +32,7 @@ let emmiter = new EventHelper();
 let emmiter = EventHelper.create();
 ```
 
-## API:
+### API:
 
 1、on/addListener/subscribe/bind:<br>
 用途：绑定一个自定义事件监听函数<br>
