@@ -15,18 +15,19 @@ describe('#method: tail', ()=>{
             time500Values.push(time500);
             times++;
             if(times==2){
-                assert(time300Values.length, 2);
-                assert(time300Values[0], 300);
-                assert(time300Values[1], 600);
-                assert(time500Values.length, 1);
-                assert(time500Values[0], 500);
                 clearInterval(interval300);
                 clearInterval(interval500);
+                assert.equal(time300Values.length, 2);
+                assert.equal(time300Values[0], 300);
+                assert.equal(time300Values[1], 600);
+                assert.equal(time500Values.length, 2);
+                assert.equal(time500Values[0], 500);
+                assert.equal(time500Values[1], 500);
                 done();
             }
         });
-        interval300 = setInterval(()=> emmiter.emit('time300', (times+1)*300, 300));
-        interval500 = setInterval(()=> emmiter.emit('time500', (times+1)*500, 500));
+        interval300 = setInterval(()=> emmiter.emit('time300', (times+1)*300), 300);
+        interval500 = setInterval(()=> emmiter.emit('time500', (times+1)*500), 500);
         
     })
 });
