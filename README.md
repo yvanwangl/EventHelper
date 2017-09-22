@@ -19,7 +19,7 @@ npm install eventhelper
 ```
 2、如果你直接引入
 ```
-<script type='text/script' src="https://raw.github.com/yvanwangl/EventHelper/master/lib/eventhelper.js"></script>
+<script type='text/javascript' src="https://cdn.rawgit.com/yvanwangl/EventHelper/master/lib/eventhelper.js"></script>
 ```
 
 ### 如何创建一个EventHelper对象：
