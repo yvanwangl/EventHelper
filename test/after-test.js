@@ -1,4 +1,5 @@
 let assert = require('assert');
+let fs = require('mz/fs');
 let EventHelper = require('../index');
 
 describe('#method: after', ()=>{
@@ -8,16 +9,16 @@ describe('#method: after', ()=>{
         let count = 1;
         emmiter.after('times', 3, (result)=>{
             if(count==1){
-                assert(result.length, 3);
-                assert(result[0], 2);
-                assert(result[1], 4);
-                assert(result[2], 6);
+                assert.equal(result.length, 3);
+                assert.equal(result[0], 2);
+                assert.equal(result[1], 4);
+                assert.equal(result[2], 6);
                 count++;
             }else {
-                assert(result.length, 3);
-                assert(result[0], 8);
-                assert(result[1], 10);
-                assert(result[2], 12);
+                assert.equal(result.length, 3);
+                assert.equal(result[0], 8);
+                assert.equal(result[1], 10);
+                assert.equal(result[2], 12);
             }
            
         });
@@ -30,6 +31,30 @@ describe('#method: after', ()=>{
         emmiter.emit('times', 12);
 
     });
+
+    it('#after() should read files in group', (done)=>{
+        let count = 1;
+        emmiter.after('read', 1, (result)=>{
+            if(count==1){
+                assert.equal(result.length, 1);
+                assert.equal(result[0], 'read10');
+                count++;
+            }else if(count==2) {
+                assert.equal(result.length, 1);
+                assert.equal(result[0], 'read20');
+                count++;
+            }else {
+                assert.equal(result.length, 1);
+                assert.equal(result[0], 'read30');
+                count++;
+                done();
+            }
+           
+        });
+
+        ['read', 'read20', 'read30'].map((filename)=> fs.readFile(`./mock/${filename}.txt`, 'utf-8', emmiter.group('read')));
+
+    });
 });
 
 describe('#method: afterOnce', ()=>{
@@ -37,10 +62,10 @@ describe('#method: afterOnce', ()=>{
 
     it('#after() should has value [2,4,6]', ()=>{
         emmiter.afterOnce('times', 3, (result)=>{
-            assert(result.length, 3);
-            assert(result[0], 2);
-            assert(result[1], 4);
-            assert(result[2], 6);
+            assert.equal(result.length, 3);
+            assert.equal(result[0], 2);
+            assert.equal(result[1], 4);
+            assert.equal(result[2], 6);
         });
 
         emmiter.emit('times', 2);
