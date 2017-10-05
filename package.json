@@ -30,6 +30,7 @@
     "babel-preset-env": "^1.6.0",
     "codecov": "^2.3.0",
     "istanbul": "*",
+    "karma": "^1.7.1",
     "mocha": "^3.5.0",
     "muk": "^0.5.3",
     "mz": "^2.6.0"
