@@ -345,6 +345,49 @@ fs.readFile('./mock/read.txt', 'utf-8', emmiter.doneLater('read'));
 ```
 doneLater方法与done几乎一样，唯一的区别是doneLater是异步触发事件。<br>
 
+17、concurrent：<br>
+用途：concurrent 用于处理异步事件队列的并发<br>
+参数：concurrent(eventType:String, limit:Number, asyncHandler:Function, asyncParams:Array)<br>
+返回值：EventHelper实例对象<br>
+使用方式：
+```
+let emmiter = new EventHelper();
+let loadImg = (url, callback)=>{
+    let img = document.createElement('img');
+    img.onload = ()=> callback(null, img);
+    img.onerror = (error)=> callback(error, null);
+    img.src = url;
+};
+let images = [
+    "https://www.baidu.com/img/bd_logo1.png", 
+    "https://www.baidu.com/img/baidu_jgylogo3.gif",
+    "https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=265704898,674087460&fm=58", 
+    "https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3105518379,1723849651&fm=58", 
+    "https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2292095202,1784829557&fm=58", 
+    "https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1219708893,1812014204&fm=58",
+    "https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3669175269,2356096679&fm=58", 
+    "https://ss3.baidu.com/-rVXeDTa2gU2pMbgoY3K/it/u=154063165,2016512383&fm=202&mola=new&crop=v1", 
+    "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3536541845,739399450&fm=27&gp=0.jpg", 
+    "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=594559231,2167829292&fm=27&gp=0.jpg", 
+    "https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3138365389,851751545&fm=27&gp=0.jpg", 
+    "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3965705221,2010595691&fm=27&gp=0.jpg", 
+    "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1742626185,2547278809&fm=27&gp=0.jpg", 
+    "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1060387669,1498970204&fm=27&gp=0.jpg", 
+    "https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4271053251,2424464488&fm=27&gp=0.jpg", 
+    "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=4140230371,1584894266&fm=27&gp=0.jpg", 
+    "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2710025438,2030209695&fm=27&gp=0.jpg", 
+    "https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3432487329,2901563519&fm=27&gp=0.jpg", 
+    "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2993396273,3023277058&fm=27&gp=0.jpg", 
+    "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2838934065,571280381&fm=27&gp=0.jpg"
+];
+emmiter.concurrent('load', 5, loadImg, images);
+emmiter.on('loadFinish', (result)=> {
+    expect(result.length).to.equal(20);
+    done();
+});
+```
+concurrent方法主要用于处理异步事件队列的并发管理，传递参数：eventType为自定义异步事件名称；limit为异步并发数；asyncHandler为异步事件处理函数，注意该函数需要接收一个error first风格的回调函数，该回调函数为concurrent内部自动生成，用于接收异步事件处理成功后的数据或错误信息，例如上面例子中的loadImg函数；asyncParams 为异步事件队列的参数集合。该方法调用成功后，会出发一个 eventType+'Finish' 事件，通过该事件即可监听并发完成的事件，例如上例中的 load 事件完成后会出发 loadFinish 事件， 该事件注册的监听函数的参数为一个数组，即异步事件队列的结果集合，结果顺序与asyncParams 参数集合的顺序一致。<br>
+
 以上即为EventHelper这个工具库的全部api方法及使用说明，后续会补充一些典型的应用场景，如果你有好的想法请联系我:)
 
 
