@@ -385,7 +385,7 @@ emmiter.on('loadFinish', (result)=> {
     console.log(result);
 });
 ```
-concurrent方法主要用于处理异步事件队列的并发管理，传递参数：eventType为自定义异步事件名称；limit为异步并发数；asyncHandler为异步事件处理函数，注意该函数需要接收一个error first风格的回调函数，该回调函数为concurrent内部自动生成，用于接收异步事件处理成功后的数据或错误信息，例如上面例子中的loadImg函数；asyncParams 为异步事件队列的参数集合。该方法调用成功后，会出发一个 eventType+'Finish' 事件，通过该事件即可监听并发完成的事件，例如上例中的 load 事件完成后会出发 loadFinish 事件， 该事件注册的监听函数的参数为一个数组，即异步事件队列的结果集合，结果顺序与asyncParams 参数集合的顺序一致。<br>
+concurrent方法主要用于处理异步事件队列的并发管理，传递参数：eventType为自定义异步事件名称；limit为异步并发数；asyncHandler为异步事件处理函数，注意该函数需要接收一个error first风格的回调函数作为参数，该回调函数为concurrent内部自动生成，用于接收异步事件处理成功后的数据或错误信息，例如上面例子中的loadImg函数；asyncParams 为异步事件队列的参数集合。该方法调用成功后，会触发一个 eventType+'Finish' 事件，通过该事件即可监听并发完成的事件，例如上例中的 load 事件完成后会出发 loadFinish 事件， 该事件注册的监听函数的参数为一个数组，即异步事件队列的结果集合，结果顺序与asyncParams 参数集合的顺序一致。<br>
 
 以上即为EventHelper这个工具库的全部api方法及使用说明，后续会补充一些典型的应用场景，如果你有好的想法请联系我:)
 
