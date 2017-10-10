@@ -21,6 +21,30 @@ describe('#method: un', ()=>{
         emmiter.un('test');
         assert.equal(emmiter._eventEmitter['test'].length, 0);
     });
+
+    it('#un() should throw an error with message: "eventType" is required, should be a String name, please checkout', ()=>{
+        let handler1 = ()=> console.log('test handler1');
+        let handler2 = ()=> console.log('test handler2');
+        emmiter.on('test', handler1);
+        emmiter.on('test', handler2);
+        try {
+            emmiter.un();
+        }catch(e){
+            assert.equal(e.message, '"eventType" is required, should be a String name, please checkout');
+        }
+    });
+
+    it('#un(handler1) should throw an error with message: "eventType" is required, should be a String name, please checkout', ()=>{
+        let handler1 = ()=> console.log('test handler1');
+        let handler2 = ()=> console.log('test handler2');
+        emmiter.on('test', handler1);
+        emmiter.on('test', handler2);
+        try {
+            emmiter.un(handler1);
+        }catch(e){
+            assert.equal(e.message, '"eventType" is required, should be a String name, please checkout');
+        }
+    });
 });
 
 describe('#method: unAllListeners', ()=>{

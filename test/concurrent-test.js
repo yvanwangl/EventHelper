@@ -37,8 +37,15 @@ if(typeof window == 'undefined'){
                     img.onerror = (error)=> callback(error, null);
                     img.src = url;
                 };
+                emmiter.fail({
+                    load: function(err){
+                        console.log(err);
+                    }
+                });
                 emmiter.concurrent('load', 5, loadImg, imageList.images);
                 emmiter.on('loadFinish', (result)=> {
+                    // console.log(result);
+                    // console.log(typeof result[6]=='undefined');
                     expect(result.length).to.equal(20);
                     done();
                 });
