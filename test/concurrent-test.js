@@ -44,8 +44,9 @@ if(typeof window == 'undefined'){
                 });
                 emmiter.concurrent('load', 5, loadImg, imageList.images);
                 emmiter.on('loadFinish', (result)=> {
-                    // console.log(result);
-                    // console.log(typeof result[6]=='undefined');
+                    console.log(result);
+                    expect(result[5]).to.equal(undefined);
+                    expect(result[6]).to.equal(undefined);
                     expect(result.length).to.equal(20);
                     done();
                 });
