@@ -75,7 +75,7 @@ fs.readFile('./mock/write.txt', 'utf-8', (err, data)=> emmiter.emit('write', dat
 ```
 all会监听多个自定义事件，直到所有事件都触发之后才会触发回调函数，回调函数的参数会按照自定义事件的顺序进行排列。<br>
 
-3、race：<br>
+4、race：<br>
 用途：多个自定义事件的竞争<br>
 参数：race(eventType1:String, eventType2:String, handler:Function)<br>
 返回值：EventHelper实例对象<br>
@@ -84,7 +84,7 @@ all会监听多个自定义事件，直到所有事件都触发之后才会触�
 let emmiter = new EventHelper();
 emmiter.race('time300', 'time500', ({eventType, data})=>{
     console.log(eventType); //'time300'
-    assert.equal(data);     //300
+    console.log(data);     //300
 });
 setTimeout(()=> emmiter.emit('time300', 300), 300);
 setTimeout(()=> emmiter.emitLater('time500', 500), 500);
@@ -94,7 +94,7 @@ race用于多个竞态异步事件的处理，回调函数参数为一个封装�
 {eventType: 'eventType1', data:'data'}
 ```
 
-4、tail/combineLastest：<br>
+5、tail/combineLastest：<br>
 用途：持续触发多个自定义事件数据更新
 参数：tail(eventType1:String, eventType2:String, handler:Function)<br>
 返回值：EventHelper实例对象<br>
@@ -123,7 +123,7 @@ interval500 = setInterval(()=> emmiter.emit('time500', (times+1)*500), 500);
   ```
 tail必须多个自定义事件均完成至少一次，才会触发回调函数的执行，后续每个自定义事件数据的更新均会触发回调函数的执行，回调函数中数据的顺序按照自定义事件的顺序排列<br>
 
-5、headbind：<br>
+6、headbind：<br>
 用途：将一个自定义事件的回调函数绑定到该事件回调执行队列的头部<br>
 参数：headbind(eventType:String, handler:Function)<br>
 返回值：EventHelper实例对象<br>
@@ -137,7 +137,7 @@ fs.readFile('demo.txt', 'utf-8', (err, data)=> emmiter.emit('read', data));
 ```
 headbind将一个回调处理函数放置到eventType事件队列的头部，优先执行<br>
 
-6、un/removeListener/unsubscribe/unbind：<br>
+7、un/removeListener/unsubscribe/unbind：<br>
 用途：移除一个自定义事件的一个或全部监听函数<br>
 参数：un(eventType:String[,handler:Function])<br>
 返回值：EventHelper实例对象<br>
@@ -153,7 +153,7 @@ emmiter.emit('test');           //
 hanlder参数非必填<br>
 FBI WARNING: 如果不传递handler参数，将会移除自定义事件的所有监听函数<br>
 
-7、unAllListeners/removeAllListeners/unbindAllListeners：<br>
+8、unAllListeners/removeAllListeners/unbindAllListeners：<br>
 用途：移除一个自定义事件的全部监听函数<br>
 参数：un(eventType:String)<br>
 返回值：EventHelper实例对象<br>
@@ -168,7 +168,7 @@ emmiter.emit('test');           //
 ```
 unAllListeners内部调用un方法，所以un(eventType)等同于unAllListeners(eventType)<br>
 
-8、once：<br>
+9、once：<br>
 用途：绑定一个自定义事件监听函数，仅会触发一次执行<br>
 参数：once(eventType:String, handler:Function)<br>
 返回值：EventHelper实例对象<br>
@@ -182,7 +182,7 @@ emmiter.emit('test', 'firstEmit');
 emmiter.emit('test', 'secondEmit');
 ```
 
-9、emitLater：<br>
+10、emitLater：<br>
 用途：异步触发一个自定义事件<br>
 参数：emitLater(eventType:String, data:Any)<br>
 返回值：EventHelper实例对象<br>
@@ -195,7 +195,7 @@ fs.readFile('./mock/readMore.txt', 'utf-8', (err, data)=> emmiter.emitLater('rea
 ```
 emitLater的功能和emit几乎一样，但是emitLater是异步触发一个自定义事件。<br>
 
-10、immediate/asap：<br>
+11、immediate/asap：<br>
 用途：监听并马上触发一个自定义事件<br>
 参数：emitLater(eventType:String, handler:Function, data:Any)<br>
 返回值：EventHelper实例对象<br>
@@ -206,7 +206,7 @@ emmiter.immediate('read', (result)=> {
 }, 'read10');
 ```
 
-11、fail：<br>
+12、fail：<br>
 用途：fail允许你统一处理错误<br>
 参数：fail(errorMap:Object)<br>
 返回值：EventHelper实例对象<br>
@@ -235,7 +235,7 @@ fs.readFile('./mock/read.txt', 'utf-8', (err, data)=>{
 ```
 fail方法允许你将所有的错误处理方法集中在一起，方便统一管理。
 
-12、after：<br>
+13、after：<br>
 用途：监听一个自定义事件，并在该事件被触发n/2n/3n/...次之后，执行回调函数<br>
 参数：after(eventType:String, times:Number, handler:Function)<br>
 返回值：EventHelper实例对象<br>
@@ -261,7 +261,7 @@ emmiter.emit('times', 12);
 ```
 after方法会在被监听的自定义事件触发n/2n/3n/...次之后执行一次回调函数，回调函数的参数为一个数组，记录最后n次触发的数据<br>
 
-12、afterOnce：<br>
+14、afterOnce：<br>
 用途：监听一个自定义事件，并在该事件被触发n次之后，仅执行一次回调函数<br>
 参数：afterOnce(eventType:String, times:Number, handler:Function)<br>
 返回值：EventHelper实例对象<br>
@@ -278,7 +278,7 @@ emmiter.emit('times', 6);
 ```
 afterOnce方法会在被监听的自定义事件触发n次之后仅执行一次回调函数，回调函数的参数为一个数组，为n次触发的数据<br>
 
-13、group：<br>
+15、group：<br>
 用途：group方法是after或afterOnce的助手方法，将同一个事件多次触发进行分组<br>
 参数：group(eventType:String[,handler:Function])<br>
 返回值：EventHelper实例对象<br>
@@ -301,7 +301,7 @@ files.map(file=> fs.readFile(file, 'utf-8', emmiter.group('content', (data)=> `$
 ['read10!', 'read20!','read30!']
 ```
 
-14、not：<br>
+16、not：<br>
 用途：当触发的事件不是not方法指定的事件时，执行回调方法<br>
 参数：not(eventType:String, handler:Function)<br>
 返回值：EventHelper实例对象<br>
@@ -315,7 +315,7 @@ emmiter.emit('read', 'read10');
 emmiter.emit('not', 'not10');
 ```
 
-15、done：<br>
+17、done：<br>
 用途：done返回一个error first风格的回调函数，内部进行错误处理及事件触发<br>
 参数：done(eventType:String[, handler:Function])<br>
 返回值：EventHelper实例对象<br>
@@ -330,7 +330,7 @@ fs.readFile('./mock/read.txt', 'utf-8', emmiter.done('read'));
 ```
 done方法在内部会返回一个error first风格的回调函数，会触发一个错误事件或eventType事件，其中handler参数非必须，主要用于对数据的加工处理。<br>
 
-16、doneLater：<br>
+18、doneLater：<br>
 用途：done方法的异步触发版本<br>
 参数：doneLater(eventType:String, handler:Function)<br>
 返回值：EventHelper实例对象<br>
@@ -345,7 +345,7 @@ fs.readFile('./mock/read.txt', 'utf-8', emmiter.doneLater('read'));
 ```
 doneLater方法与done几乎一样，唯一的区别是doneLater是异步触发事件。<br>
 
-17、concurrent：<br>
+19、concurrent：<br>
 用途：concurrent 用于处理异步事件队列的并发<br>
 参数：concurrent(eventType:String, limit:Number, asyncHandler:Function, asyncParams:Array)<br>
 返回值：EventHelper实例对象<br>
