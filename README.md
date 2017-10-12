@@ -1,7 +1,7 @@
 # EventHelper
 ![](https://travis-ci.org/yvanwangl/EventHelper.svg?branch=master)
 [![coverage](https://codecov.io/gh/yvanwangl/EventHelper/branch/master/graph/badge.svg)](https://codecov.io/gh/yvanwangl/EventHelper)
-[![GitHub version](https://badge.fury.io/gh/yvanwangl%2FEventHelper.svg)](https://badge.fury.io/gh/yvanwangl%2FEventHelper)
+[![npm version](https://badge.fury.io/js/eventhelper.svg)](https://badge.fury.io/js/eventhelper)
 [![NPM downloads](http://img.shields.io/npm/dy/eventhelper.svg?style=flat)](https://www.npmjs.com/package/eventhelper)
 
 一个基于事件机制的异步事件处理工具。<br>
