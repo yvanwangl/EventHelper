@@ -14,7 +14,7 @@ EventHelper具有以下几个特征：<br>
 4、统一处理异步事件错误的机制<br>
 5、Web前端与Node后端均可使用<br>
 
-#### [中文文档](https://yvanwangl.gitbooks.io/eventhelper/content/)
+### [中文文档](https://yvanwangl.gitbooks.io/eventhelper/content/)
 
 ### 如何安装
 1、如果你使用npm
