@@ -97,7 +97,7 @@ race用于多个竞态异步事件的处理，回调函数参数为一个封装�
 ```
 
 5、tail/combineLastest：<br>
-用途：持续触发多个自定义事件数据更新
+用途：持续触发多个自定义事件数据更新<br>
 参数：tail(eventType1:String, eventType2:String, handler:Function)<br>
 返回值：EventHelper实例对象<br>
 使用方式：
